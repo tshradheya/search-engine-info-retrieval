@@ -1,0 +1,15 @@
+1. Yes, we feel removing numbers will help save space as these not not queried. Moreover, by having numbers in different format
+its necessary to normalise them which will make it effective in searching if they are ever used.
+There are 41% terms which contain number and this can save a lot of space in dictionary and memory
+
+2. In the given data although there aren't many stop words but their frequency is quite high and hence use lot of posting list memory.
+If we remove them we will have to handle it in searching as well to avoid imperfect results with no posting lists.
+
+Total of 116547 document frequency of all stop words is present which occupies lot of space in posting list
+
+3. Does a good job overall but it has some issues like:
+
+- words like wheat/1.0, xj-6, shex/4,000 aren't resolved properly and will give inaccurate results.
+We can fix by removing these special characters explicitly
+- Improper way of splitting and parsing words which is usually cause of bad data so we might need some correctors
+and checking against a glossary to see if they are actual words

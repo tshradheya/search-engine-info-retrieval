@@ -1,0 +1,27 @@
+1. In order to support phrases, we will have to extra data during indexing about position where these terms occur in a document
+
+Hence it will look like:
+
+term -> DF -> POSTINGLIST offset [(docId, tf, (list of positions)]
+
+Algorithm during indexing:
+- Add an extra step to append the position when each term for each document is being indexed and put into a data structure
+
+Algorithm during Search (searching for "first second"):
+- Get all docs containing first OR second
+- Get postings lists and and traverse while ensuring their docIds are checked in order
+    - If docId is same loop through list of positions in increasing order checking if there ever exists a difference of one
+
+For more than 2 words in a phrase, iteratively merge them. This will give some false positives as discussed in lecture but will be pretty accurate
+
+
+2. The main difference between longer and short documents will be how TF weight will be impacted since smaller doc with many
+similar words will be ranked very high and for long docs words tend to appear multiple times and hence can have higher score.
+This will affect the quality of results as they will not be a good representation. To improve this normalizing with just length might not be enough
+and other criteria must be considered so tf weight is correctly assigned to these docs for the query. The scheme lnc.ltc might not need much change.
+Maybe we could replace cosine with something that doesnt need normalisation or prevent tf from getting much weightage in score
+
+
+3. Since not all docs have metadata, even just using the ones given with a good weightage can help in increasing the
+accuracy of results. It will help in distinguishing documents which initially have very close score but one of them can be placed
+much higher if metadata is a good match.

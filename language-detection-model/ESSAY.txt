@@ -1,0 +1,26 @@
+1. I think using token based ngrams will be better as it will provide grammatically correct context as well and give better accuracy.
+   However, it will require a much bigger data set for training in order for it to prove effective.
+
+
+2. More the data for all language, the better the accuracy with which we can predict it belongs to a certain language.
+   If we have more data for a certain language, precision for that language will be higher and shouldn't ideally affect other languages.
+
+
+3. Removing numbers and making everything lowercase will help as they don't usually help in uniquely identifying a language.
+   Although, some punctuations might be helpful with certain languages although it will require some knowledge about it.
+   Efficiency will be good by removing these as they don't really help much and end up increasing size of data and computation time.
+   Accuracy might be better if we keep certain things knowing they are important to a language.
+
+4. For character based ngrams, smaller n will give bad result and bigger n will give better result until a certain n
+   without running the risk of a bloated up model. Lower n can make data dense which can be helpful in a way.
+
+   Experiments:
+   1-gram: 11 / 20 (55.0%)
+   2-gram: 16 / 20 (80.0%)
+   3-gram: 18 / 20 (90.0%)
+   4-gram: 20 / 20 (100.0%) [until 7-gram] reaches peak
+   10-gram: 18 / 20 (90.0%)
+
+
+
+
